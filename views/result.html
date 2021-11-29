@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+% if is_status_open:
+    <meta http-equiv="Refresh" content="10">
+% end
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <title>YontaQ 集計結果</title>
+</head>
+<body>
+    <h2>
+        <li>YontaQ 集計結果</li>
+    </h2>
+    <h2>Q{{ qid }} の結果</h2>
+% if is_status_open and online_agg:
+    <h2>入力受付中/暫定集計値</h2>
+% elif is_status_open and not online_agg:
+    <h2>入力受付中/集計中</h2>
+    <div>結果表示までしばらくお待ち下さい…。</div>
+% else:
+    <h2>入力締切済/確定集計値</h2>
+% end
+
+% if online_agg or not is_status_open:
+    <style>
+    #ex_chart {max-width:640px;max-height:480px;}
+    </style>
+    <canvas id="ex_chart"></canvas>
+    <script>
+    var ctx = document.getElementById('ex_chart');
+
+    var data = {
+        labels: ["選択肢1", "選択肢2", "選択肢3", "選択肢4"],
+        datasets: [{
+            //label: 'ラベル(仮)',
+            data: [{{ agg }}],
+            backgroundColor: [
+                '#ff7aff',
+                '#7abcff',
+                '#bcff7a',
+                '#ffbc7a',
+            ]
+        }]
+    };
+
+    var options = {
+        scales: {
+            xAxes: [{
+                ticks: {
+                    autoSkip: false,
+                    stepSize: 1,
+                    min: 0,
+                    suggestedMin: 0,
+                    suggestedMax: 10,
+                }
+            }]
+        },
+        legend: {
+            display: false
+        }
+    };
+
+    var ex_chart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: data,
+        options: options
+    });
+    </script>
+
+% end
+<hr>
+<button type=“button” onclick="location.href='/enq'" style="width:200px;height:50px">回答フォームに戻る</button>
+
+</body>
+</html>

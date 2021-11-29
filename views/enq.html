@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>YontaQ 回答フォーム</title>
+</head>
+<body>
+    <h2>YontaQ 回答フォーム</h2>
+    <h2>Q{{ qid }}</h2>
+<form action="/enq" method="post">
+    <input type="submit" name="ans" value="1" style="width:100px;height:50px">
+    <input type="submit" name="ans" value="2" style="width:100px;height:50px">
+    <input type="submit" name="ans" value="3" style="width:100px;height:50px">
+    <input type="submit" name="ans" value="4" style="width:100px;height:50px">
+</form>
+<hr>
+<form>
+    <input type="button" value="リロード" onclick="window.location.reload(true);" style="width:100px;height:50px" />
+</form>
+</body>
+</html>

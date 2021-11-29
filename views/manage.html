@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>YontaQ 管理画面</title>
+</head>
+<body>
+    <ul>
+        <li>Question ID: {{ qid }}</li>
+        <li>Status:
+            <ul>
+                <li>{{ status }}</li>
+            </ul>
+        </li>
+        <li>Setting:
+            <ul>
+                <li>Online Agg: {{ online_agg }}</li>
+            </ul>
+        </li>
+    </ul>
+<form action="/mng" method="post">
+    <input type="submit" name="status_change" value="open">
+    <input type="submit" name="status_change" value="close">
+    <input type="submit" name="qid_change" value="next_question">
+    <input type="submit" name="qid_change" value="reset">
+    <input type="submit" name="agg_change" value="online_agg_on">
+    <input type="submit" name="agg_change" value="online_agg_off">
+</form>
+
+</body>
+</html>
